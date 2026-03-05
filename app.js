@@ -36,7 +36,10 @@ const STORES = [
     description: '琵琶湖疏水沿いの京町家フレンチビストロ。蓮華農園の食材を使った炭火焼き料理とワイン。予約必須の隠れ家。',
     lat: 35.0150167,
     lng: 135.7797573,
-    instagram: 'https://www.instagram.com/dupreekyoto/'
+    instagram: 'https://www.instagram.com/dupreekyoto/',
+    hours: '18:00-23:00',
+    closed: '月火',
+    price: 3
   },
   {
     id: 'koke',
@@ -46,7 +49,10 @@ const STORES = [
     description: 'ミシュラン一つ星。京都-沖縄-神戸-エスパニョールの融合。13皿のコースとカウンター越しのオープンキッチン。',
     lat: 35.0125587,
     lng: 135.7582241,
-    instagram: 'https://www.instagram.com/kokekyoto/'
+    instagram: 'https://www.instagram.com/kokekyoto/',
+    hours: '18:00-22:00',
+    closed: '水',
+    price: 4
   },
   {
     id: 'tona',
@@ -56,7 +62,10 @@ const STORES = [
     description: '築150年の京町家ワインビストロ。旬の食材を使ったフレンチとワインペアリング。コース¥6,600〜。',
     lat: 34.9994175,
     lng: 135.7661641,
-    instagram: 'https://www.instagram.com/tona_kyoto/'
+    instagram: 'https://www.instagram.com/tona_kyoto/',
+    hours: '17:30-23:00',
+    closed: '日',
+    price: 3
   },
   {
     id: 'baitarusain',
@@ -67,7 +76,10 @@ const STORES = [
     description: '京都静原の有機野菜とナチュラルワインの小さなレストラン。野菜中心の6皿コース¥5,800。',
     lat: 35.0023835,
     lng: 135.7699938,
-    instagram: 'https://www.instagram.com/baitarusain_kyoto/'
+    instagram: 'https://www.instagram.com/baitarusain_kyoto/',
+    hours: '18:00-22:00',
+    closed: '日月',
+    price: 3
   },
   {
     id: 'sunset-beach',
@@ -78,7 +90,10 @@ const STORES = [
     description: '木屋町エリアのレコードが流れる居酒屋。刺身、和牛など旬の素材を使ったおまかせスタイル。',
     lat: 34.9988128,
     lng: 135.7683625,
-    instagram: 'https://www.instagram.com/the_sunsetbeach/'
+    instagram: 'https://www.instagram.com/the_sunsetbeach/',
+    hours: '18:00-翌1:00',
+    closed: '不定休',
+    price: 2
   },
   {
     id: 'ikariya-shokudou',
@@ -89,7 +104,10 @@ const STORES = [
     description: '築100年超の京町家フレンチビストロ。名物コンフィチキンとスフレフロマージュ。鴨川沿い。',
     lat: 35.0019250,
     lng: 135.7702922,
-    instagram: 'https://www.instagram.com/ikariya.shokudou/'
+    instagram: 'https://www.instagram.com/ikariya.shokudou/',
+    hours: '11:30-14:00 / 17:30-22:00',
+    closed: '水',
+    price: 2
   },
   {
     id: 'kacto',
@@ -99,7 +117,10 @@ const STORES = [
     description: '団栗橋西の鴨川沿い京町家。バターミルクパンケーキ、和牛バーガー。Tysons & Company系列。',
     lat: 35.0022585,
     lng: 135.7704950,
-    instagram: 'https://www.instagram.com/kacto.kyoto/'
+    instagram: 'https://www.instagram.com/kacto.kyoto/',
+    hours: '11:00-22:00',
+    closed: '不定休',
+    price: 2
   },
   {
     id: 'ietiem',
@@ -110,7 +131,10 @@ const STORES = [
     description: '高瀬川沿いのスタイリッシュ居酒屋。旬の野菜と創作和食。1Fスタンディング、2Fテーブル席。',
     lat: 35.0018743,
     lng: 135.7697063,
-    instagram: 'https://www.instagram.com/ietiem.kyoto/'
+    instagram: 'https://www.instagram.com/ietiem.kyoto/',
+    hours: '17:00-翌0:00',
+    closed: '日',
+    price: 2
   },
   {
     id: 'amore',
@@ -120,7 +144,10 @@ const STORES = [
     description: '京町家の南イタリアン。大窯で焼くナポリピッツァ、パスタ、肉料理。鴨川ビュー。',
     lat: 35.0006681,
     lng: 135.7692678,
-    instagram: 'https://www.instagram.com/amore_kiyamachi/'
+    instagram: 'https://www.instagram.com/amore_kiyamachi/',
+    hours: '11:30-14:00 / 17:30-22:00',
+    closed: '不定休',
+    price: 2
   },
   {
     id: 'aje',
@@ -131,7 +158,10 @@ const STORES = [
     description: '新鮮ホルモン焼肉。名物の近江牛ホソ(小腸)塩¥750。毎日仕入れの鮮度が自慢。行列必至。',
     lat: 35.0016992,
     lng: 135.7698642,
-    instagram: 'https://www.instagram.com/aje_kyoto_hoso/'
+    instagram: 'https://www.instagram.com/aje_kyoto_hoso/',
+    hours: '17:00-翌0:00',
+    closed: '不定休',
+    price: 1
   },
   {
     id: 'ishigama',
@@ -142,7 +172,10 @@ const STORES = [
     description: '京都駅徒歩3分。石窯で焼くピッツァ、肉、パスタ。スパニッシュバルスタイル。',
     lat: 34.9893489,
     lng: 135.7584738,
-    instagram: 'https://www.instagram.com/ishigama_official/'
+    instagram: 'https://www.instagram.com/ishigama_official/',
+    hours: '11:30-14:30 / 17:00-22:30',
+    closed: '不定休',
+    price: 2
   },
   {
     id: 'sumi',
@@ -153,7 +186,10 @@ const STORES = [
     description: 'セルフサービスワインベンディング。クラフトビール、ナチュラルワイン、コーヒーも楽しめるスタイリッシュ空間。',
     lat: 34.9989685,
     lng: 135.7684477,
-    instagram: 'https://www.instagram.com/sumi.kyoto/'
+    instagram: 'https://www.instagram.com/sumi.kyoto/',
+    hours: '12:00-翌0:00',
+    closed: '不定休',
+    price: 2
   },
   {
     id: 'sui',
@@ -163,7 +199,10 @@ const STORES = [
     description: 'ジャンルレスな創作料理とペアリング。Stand Umineko系列。2024年6月オープン。',
     lat: 35.0024913,
     lng: 135.7655435,
-    instagram: 'https://www.instagram.com/sui.kyoto2024/'
+    instagram: 'https://www.instagram.com/sui.kyoto2024/',
+    hours: '18:00-23:00',
+    closed: '水',
+    price: 3
   },
   {
     id: 'cicon',
@@ -173,7 +212,10 @@ const STORES = [
     description: 'NOHGA HOTEL KIYOMIZU KYOTO 1Fのイタリアン。ルーフトップバー&ベーカリー併設。五条エリア。',
     lat: 34.9949487,
     lng: 135.7740211,
-    instagram: 'https://www.instagram.com/cicon_by_nohgahotel/'
+    instagram: 'https://www.instagram.com/cicon_by_nohgahotel/',
+    hours: '7:00-10:00 / 11:30-14:00 / 17:30-21:00',
+    closed: 'なし',
+    price: 3
   },
   {
     id: 'sodoh',
@@ -183,7 +225,10 @@ const STORES = [
     description: '東山の歴史的邸宅イタリアン。庭園を望むラグジュアリーな空間。Sushi Azabu Higashiyama併設。',
     lat: 34.9988958,
     lng: 135.7796677,
-    instagram: 'https://www.instagram.com/kyoto_thesodoh/'
+    instagram: 'https://www.instagram.com/kyoto_thesodoh/',
+    hours: '11:30-15:00 / 17:30-21:00',
+    closed: '不定休',
+    price: 3
   },
   {
     id: 'etto',
@@ -193,7 +238,10 @@ const STORES = [
     description: '京町家リノベーションのイタリアン。静かな住宅街に佇むミシュランガイド掲載レストラン。',
     lat: 35.0215202,
     lng: 135.7537460,
-    instagram: 'https://www.instagram.com/etto.kyoto/'
+    instagram: 'https://www.instagram.com/etto.kyoto/',
+    hours: '12:00-13:30 / 18:00-21:00',
+    closed: '水木',
+    price: 3
   },
   {
     id: 'severance',
@@ -203,7 +251,10 @@ const STORES = [
     description: '三条大橋東のクリエイティブ洋食。旬の食材とセレクトワイン。三条駅すぐ。',
     lat: 35.0093657,
     lng: 135.7740036,
-    instagram: 'https://www.instagram.com/severance_kyoto/'
+    instagram: 'https://www.instagram.com/severance_kyoto/',
+    hours: '18:00-翌0:00',
+    closed: '月',
+    price: 2
   },
   {
     id: 'snn',
@@ -213,7 +264,10 @@ const STORES = [
     description: '二条城前エリアのダイニングバー。上京区の落ち着いた雰囲気で楽しむ食事とお酒。',
     lat: 35.0178945,
     lng: 135.7490263,
-    instagram: 'https://www.instagram.com/snn_kyoto/'
+    instagram: 'https://www.instagram.com/snn_kyoto/',
+    hours: '18:00-翌1:00',
+    closed: '日',
+    price: 2
   },
   {
     id: 'ondorio',
@@ -223,7 +277,10 @@ const STORES = [
     description: '築100年の町家で楽しむジャンルレス料理とセイボリーカクテル。清水五条駅徒歩8分。',
     lat: 34.9933614,
     lng: 135.7715090,
-    instagram: 'https://www.instagram.com/ondorio_kyoto/'
+    instagram: 'https://www.instagram.com/ondorio_kyoto/',
+    hours: '18:00-翌0:00',
+    closed: '水',
+    price: 2
   },
   {
     id: 'bistro-yanagihara',
@@ -234,7 +291,10 @@ const STORES = [
     description: 'アルザスで修行したシェフのビストロ。ミシュランビブグルマン。京都市役所前駅徒歩5分。',
     lat: 35.0136485,
     lng: 135.7687876,
-    instagram: 'https://www.instagram.com/bistro_yanagihara/'
+    instagram: 'https://www.instagram.com/bistro_yanagihara/',
+    hours: '11:30-14:00 / 17:30-22:00',
+    closed: '月',
+    price: 2
   },
   {
     id: 'ikariya523',
@@ -245,7 +305,10 @@ const STORES = [
     description: '三条木屋町のフレンチビストロ。いかりや食堂の姉妹店。三条駅徒歩3分。',
     lat: 35.0099159,
     lng: 135.7707066,
-    instagram: 'https://www.instagram.com/ikariya523/'
+    instagram: 'https://www.instagram.com/ikariya523/',
+    hours: '11:30-14:00 / 17:30-22:00',
+    closed: '木',
+    price: 2
   },
 
   // --- CAFES ---
@@ -258,7 +321,10 @@ const STORES = [
     description: '祇園の茶寮。日本の古来の美を現代に蘇らせるお茶と和菓子のペアリングコース。',
     lat: 35.0019682,
     lng: 135.7743702,
-    instagram: 'https://www.instagram.com/rustsabi/'
+    instagram: 'https://www.instagram.com/rustsabi/',
+    hours: '11:00-17:00',
+    closed: '不定休',
+    price: 2
   },
   {
     id: 'flow-nozy',
@@ -268,7 +334,10 @@ const STORES = [
     description: '東京NOZY COFFEE京都初出店。築約280年の町家をリノベーション。高瀬川と鴨川の間、テラス席あり。',
     lat: 35.0021205,
     lng: 135.7703741,
-    instagram: 'https://www.instagram.com/flow_by_nozycoffee/'
+    instagram: 'https://www.instagram.com/flow_by_nozycoffee/',
+    hours: '9:00-18:00',
+    closed: '不定休',
+    price: 1
   },
   {
     id: 'ace-cafe',
@@ -278,7 +347,10 @@ const STORES = [
     description: '木屋町三条のエンパイヤビル10F。京都の街を見下ろすカクテル&カフェ。三条駅徒歩3分。',
     lat: 35.0101172,
     lng: 135.7706484,
-    instagram: 'https://www.instagram.com/acecafe_kyoto/'
+    instagram: 'https://www.instagram.com/acecafe_kyoto/',
+    hours: '12:00-翌0:00',
+    closed: '不定休',
+    price: 1
   },
   {
     id: 'amahare',
@@ -286,10 +358,13 @@ const STORES = [
     nameJa: '茶房 居雨',
     category: 'cafe',
     subcategory: 'Teahouse',
-    description: '築130年の町家のクラフトギャラリー&茶房。季節の和菓子とお茶。11:00-19:00、水曜定休。',
+    description: '築130年の町家のクラフトギャラリー&茶房。季節の和菓子とお茶。',
     lat: 35.0060597,
     lng: 135.7645568,
-    instagram: 'https://www.instagram.com/sabo.kyo_amahare/'
+    instagram: 'https://www.instagram.com/sabo.kyo_amahare/',
+    hours: '11:00-19:00',
+    closed: '水',
+    price: 1
   },
   {
     id: 'moku',
@@ -300,7 +375,10 @@ const STORES = [
     description: '東山エリア。和とイタリアンの融合居酒屋。季節の食材を使った創作料理。',
     lat: 34.9957265,
     lng: 135.7711115,
-    instagram: 'https://www.instagram.com/moku.kyoto/'
+    instagram: 'https://www.instagram.com/moku.kyoto/',
+    hours: '11:30-14:00 / 18:00-22:00',
+    closed: '月',
+    price: 2
   },
 
   {
@@ -311,7 +389,10 @@ const STORES = [
     description: '八坂の塔近くのアルチザンベーカリー。幾何学模様のパンとクロワッサン。Black Swan Coffee併設。2023年12月オープン。',
     lat: 34.9986146,
     lng: 135.7790095,
-    instagram: 'https://www.instagram.com/coquelicotblanc_jp/'
+    instagram: 'https://www.instagram.com/coquelicotblanc_jp/',
+    hours: '9:00-18:00',
+    closed: '月火',
+    price: 1
   },
   {
     id: 'salon-de-muge',
@@ -322,7 +403,10 @@ const STORES = [
     description: '菊乃井プロデュースの和カフェ。季節のパフェ、時雨弁当、作りたてのわらび餅。緑に囲まれた上質空間。',
     lat: 35.0017930,
     lng: 135.7815521,
-    instagram: 'https://www.instagram.com/salon_de_muge/'
+    instagram: 'https://www.instagram.com/salon_de_muge/',
+    hours: '11:00-18:00',
+    closed: '不定休',
+    price: 2
   },
   {
     id: 'panel-cafe',
@@ -332,7 +416,10 @@ const STORES = [
     description: '白川沿いテラス席のカフェ。スフレパンケーキ、クロッフル、ティラミスが人気。祇園四条駅徒歩2分。',
     lat: 35.0051486,
     lng: 135.7726433,
-    instagram: 'https://www.instagram.com/panelcafe_kyoto/'
+    instagram: 'https://www.instagram.com/panelcafe_kyoto/',
+    hours: '11:00-19:00',
+    closed: '不定休',
+    price: 1
   },
   {
     id: 'leun-akagane',
@@ -342,7 +429,10 @@ const STORES = [
     description: '大正時代の銅王邸宅(1925年築)フレンチレストラン。五感で楽しむBeauty & Healthyフレンチ。東山の圧巻の雰囲気。',
     lat: 34.9989229,
     lng: 135.7785746,
-    instagram: 'https://www.instagram.com/leun_akagane/'
+    instagram: 'https://www.instagram.com/leun_akagane/',
+    hours: '11:30-15:00 / 17:30-21:00',
+    closed: '火',
+    price: 4
   },
   {
     id: 'rigoletto',
@@ -352,7 +442,10 @@ const STORES = [
     description: '祇園・花見小路の元お茶屋リノベ。スモーク&グリル料理、タパス、ピッツァ。2Fオープンキッチン。',
     lat: 35.0024367,
     lng: 135.7761667,
-    instagram: 'https://www.instagram.com/rigoletto_kyoto/'
+    instagram: 'https://www.instagram.com/rigoletto_kyoto/',
+    hours: '11:30-14:30 / 17:30-23:00',
+    closed: 'なし',
+    price: 2
   },
   {
     id: 'blue-bottle',
@@ -362,7 +455,10 @@ const STORES = [
     description: 'ブルーボトルコーヒー京都スタジオ。蹴上の築100年超の京町家。完全予約制コーヒーフルコース。',
     lat: 35.0113612,
     lng: 135.7894734,
-    instagram: 'https://www.instagram.com/p/DOqfayNkkaA/?img_index=1'
+    instagram: 'https://www.instagram.com/p/DOqfayNkkaA/?img_index=1',
+    hours: '予約制',
+    closed: '不定休',
+    price: 2
   },
 
   // --- WINE BARS ---
@@ -375,7 +471,10 @@ const STORES = [
     description: '東山三条のナチュラルワイン&クラフトビールバル。夫婦経営。自家製パスタとアペタイザーが人気。',
     lat: 35.00906257,
     lng: 135.77824401,
-    instagram: 'https://www.instagram.com/wine_beer_estre/'
+    instagram: 'https://www.instagram.com/wine_beer_estre/',
+    hours: '17:00-翌0:00',
+    closed: '月',
+    price: 2
   },
   {
     id: 'espace',
@@ -386,7 +485,10 @@ const STORES = [
     description: '三条京阪のビストロ&ワインバー。自家製ビストロ料理とオーガニック・ナチュラルワイン。三条駅徒歩3分。',
     lat: 35.00911934,
     lng: 135.77532398,
-    instagram: 'https://www.instagram.com/espace.kh/'
+    instagram: 'https://www.instagram.com/espace.kh/',
+    hours: '17:30-23:00',
+    closed: '日',
+    price: 2
   },
   {
     id: 'kuma-wine',
@@ -397,7 +499,10 @@ const STORES = [
     description: '神宮丸太町のナチュラルワインバー。ボトル4,000〜5,000円台。ビストロメニューも充実。',
     lat: 35.01760335,
     lng: 135.77683313,
-    instagram: 'https://www.instagram.com/kwh_info/'
+    instagram: 'https://www.instagram.com/kwh_info/',
+    hours: '17:00-23:00',
+    closed: '月',
+    price: 2
   },
   {
     id: 'harmonika',
@@ -408,7 +513,10 @@ const STORES = [
     description: '元フレンチシェフによるデセール専門店。清水五条エリア。カウンター8席。Instagram DMで予約推奨。',
     lat: 34.99821504,
     lng: 135.77217377,
-    instagram: 'https://www.instagram.com/harmonika_kyoto/'
+    instagram: 'https://www.instagram.com/harmonika_kyoto/',
+    hours: '13:00-18:00',
+    closed: '月火',
+    price: 2
   },
   {
     id: 'komorebino',
@@ -419,7 +527,10 @@ const STORES = [
     description: '祇園の隠れ家ナチュラルワインバー。世界中から厳選した約1,000本。二十四節気に合わせワインリスト更新。グラス1,000円〜。',
     lat: 35.00433506,
     lng: 135.77498202,
-    instagram: 'https://www.instagram.com/komorebino/'
+    instagram: 'https://www.instagram.com/komorebino/',
+    hours: '17:00-翌0:00',
+    closed: '日',
+    price: 2
   },
   {
     id: 'soma',
@@ -430,7 +541,10 @@ const STORES = [
     description: '鴨川沿いのカジュアルイタリアン。和牛、京丹波ポーク、契約農家の野菜。ナチュラルワイン&クラフトビール。川床あり。',
     lat: 34.99954784,
     lng: 135.76901184,
-    instagram: 'https://www.instagram.com/soma.kyoto/'
+    instagram: 'https://www.instagram.com/soma.kyoto/',
+    hours: '11:30-14:00 / 18:00-23:00',
+    closed: '月',
+    price: 2
   },
   {
     id: 'plein',
@@ -441,7 +555,10 @@ const STORES = [
     description: '銀座PLEINグループ関西初出店。花見小路沿い。1,000本超のワインセラー、関西最大級カウンター。炭火フレンチ。2024年3月開店。',
     lat: 35.00488812,
     lng: 135.77527401,
-    instagram: 'https://www.instagram.com/bistroplein.kyotogion/'
+    instagram: 'https://www.instagram.com/bistroplein.kyotogion/',
+    hours: '17:00-翌1:00',
+    closed: '不定休',
+    price: 3
   },
 
   // --- SPOTS (観光) ---
@@ -456,7 +573,7 @@ const STORES = [
     lng: 135.7292,
     instagram: 'https://www.instagram.com/explore/tags/金閣寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/640px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/960px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg'
     ]
   },
   {
@@ -470,7 +587,7 @@ const STORES = [
     lng: 135.7727,
     instagram: 'https://www.instagram.com/explore/tags/伏見稲荷大社/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/640px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg'
     ]
   },
   {
@@ -484,7 +601,7 @@ const STORES = [
     lng: 135.7850,
     instagram: 'https://www.instagram.com/explore/tags/清水寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/640px-Kiyomizu.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/960px-Kiyomizu.jpg'
     ]
   },
   {
@@ -498,7 +615,7 @@ const STORES = [
     lng: 135.6713,
     instagram: 'https://www.instagram.com/explore/tags/嵐山竹林/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Arashiyama_013.jpg/640px-Arashiyama_013.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/d/de/Arashiyama_013.jpg'
     ]
   },
   {
@@ -512,7 +629,7 @@ const STORES = [
     lng: 135.7756,
     instagram: 'https://www.instagram.com/explore/tags/祇園/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/640px-150124_Gion_Kyoto_Japan01s3.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/960px-150124_Gion_Kyoto_Japan01s3.jpg'
     ]
   },
   {
@@ -526,7 +643,7 @@ const STORES = [
     lng: 135.7481,
     instagram: 'https://www.instagram.com/explore/tags/二条城/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/NinomaruPalace.jpg/640px-NinomaruPalace.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/NinomaruPalace.jpg/960px-NinomaruPalace.jpg'
     ]
   },
   {
@@ -540,7 +657,7 @@ const STORES = [
     lng: 135.7942,
     instagram: 'https://www.instagram.com/explore/tags/哲学の道/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/640px-Japan_Kyoto_philosophers_walk_DSC00297.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/960px-Japan_Kyoto_philosophers_walk_DSC00297.jpg'
     ]
   },
   {
@@ -554,8 +671,8 @@ const STORES = [
     lng: 135.7470,
     instagram: 'https://www.instagram.com/explore/tags/城南宮/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Jonangu_Kyoto29n4272.jpg/640px-Jonangu_Kyoto29n4272.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jonangu_shrine.jpg/640px-Jonangu_shrine.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Jonangu_Kyoto29n4272.jpg/960px-Jonangu_Kyoto29n4272.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jonangu_shrine.jpg/960px-Jonangu_shrine.jpg'
     ]
   },
   {
@@ -569,7 +686,7 @@ const STORES = [
     lng: 135.7785,
     instagram: 'https://www.instagram.com/explore/tags/八坂神社/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Yasaka_jinja.jpg/640px-Yasaka_jinja.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Yasaka_jinja.jpg/960px-Yasaka_jinja.jpg'
     ]
   },
   {
@@ -583,7 +700,7 @@ const STORES = [
     lng: 135.7927,
     instagram: 'https://www.instagram.com/explore/tags/南禅寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/251213_Nanzen-ji_Kyoto_Japan01s3.jpg/640px-251213_Nanzen-ji_Kyoto_Japan01s3.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/251213_Nanzen-ji_Kyoto_Japan01s3.jpg/960px-251213_Nanzen-ji_Kyoto_Japan01s3.jpg'
     ]
   },
   {
@@ -597,7 +714,7 @@ const STORES = [
     lng: 135.7808,
     instagram: 'https://www.instagram.com/explore/tags/二寧坂/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg/640px-Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg/960px-Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg'
     ]
   },
   {
@@ -611,7 +728,7 @@ const STORES = [
     lng: 135.7643,
     instagram: 'https://www.instagram.com/explore/tags/錦市場/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/640px-Nishiki_Ichiba_by_matsuyuki.jpg'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/960px-Nishiki_Ichiba_by_matsuyuki.jpg'
     ]
   },
   {
@@ -625,7 +742,7 @@ const STORES = [
     lng: 135.7477,
     instagram: 'https://www.instagram.com/explore/tags/東寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Toji_2015.JPG/640px-Toji_2015.JPG'
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Toji_2015.JPG/960px-Toji_2015.JPG'
     ]
   }
 ];
@@ -676,6 +793,58 @@ L.control.zoom({ position: 'topright' }).addTo(map);
 L.control.attribution({ position: 'bottomright', prefix: false })
   .addAttribution('Tiles &copy; Esri | ぱくてく京都')
   .addTo(map);
+
+// === CURRENT LOCATION (GPS) ===
+let _userLatLng = null;
+let _userMarker = null;
+let _userCircle = null;
+
+function updateUserLocation(lat, lng, accuracy) {
+  _userLatLng = { lat, lng };
+  if (_userMarker) {
+    _userMarker.setLatLng([lat, lng]);
+    _userCircle.setLatLng([lat, lng]).setRadius(accuracy);
+  } else {
+    _userCircle = L.circle([lat, lng], {
+      radius: accuracy,
+      color: '#4285F4',
+      fillColor: '#4285F4',
+      fillOpacity: 0.15,
+      weight: 1
+    }).addTo(map);
+    _userMarker = L.circleMarker([lat, lng], {
+      radius: 8,
+      color: '#fff',
+      fillColor: '#4285F4',
+      fillOpacity: 1,
+      weight: 3
+    }).addTo(map);
+  }
+}
+
+const locateBtn = document.getElementById('locate-btn');
+locateBtn.addEventListener('click', () => {
+  if (!navigator.geolocation) return;
+  locateBtn.classList.add('active');
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      updateUserLocation(pos.coords.latitude, pos.coords.longitude, pos.coords.accuracy);
+      map.flyTo([pos.coords.latitude, pos.coords.longitude], 16, { duration: 1 });
+      locateBtn.classList.remove('active');
+    },
+    () => { locateBtn.classList.remove('active'); },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+});
+
+// Background GPS tracking
+if (navigator.geolocation) {
+  navigator.geolocation.watchPosition(
+    (pos) => updateUserLocation(pos.coords.latitude, pos.coords.longitude, pos.coords.accuracy),
+    () => {},
+    { enableHighAccuracy: true, maximumAge: 30000 }
+  );
+}
 
 // === MARKER MANAGEMENT ===
 const allMarkers = [];
@@ -977,11 +1146,40 @@ function showPopup(data) {
   popupName.textContent = data.nameJa ? `${data.name} (${data.nameJa})` : data.name;
 
   const cat = data.category;
-  popupCategory.textContent = cat === 'hotel' ? 'Hotel' : cat === 'restaurant' ? 'Restaurant' : cat === 'cafe' ? 'Cafe' : cat === 'spot' ? 'Spot' : 'Other';
+  popupCategory.textContent = cat === 'hotel' ? 'ホテル' : cat === 'restaurant' ? 'ごはん' : cat === 'cafe' ? 'カフェ' : cat === 'spot' ? '観光' : 'その他';
   popupCategory.className = `category-badge ${cat}`;
 
   popupSubcategory.textContent = data.subcategory || (data.day ? `Day ${data.day}` : '');
   popupDescription.textContent = data.description || '';
+
+  // Info row (hours, price, closed)
+  const popupInfo = document.getElementById('popup-info');
+  if (data.hours || data.price) {
+    const priceLabel = data.price ? '¥'.repeat(data.price) : '';
+    const parts = [];
+    if (priceLabel) parts.push(`<span class="info-price">${priceLabel}</span>`);
+    if (data.hours) parts.push(`<span class="info-hours">${data.hours}</span>`);
+    if (data.closed && data.closed !== 'なし') parts.push(`<span class="info-closed">${data.closed}休</span>`);
+    popupInfo.innerHTML = parts.join('<span class="info-sep">|</span>');
+    popupInfo.classList.remove('hidden');
+  } else {
+    popupInfo.classList.add('hidden');
+  }
+
+  // Access from current location
+  const popupAccess = document.getElementById('popup-access');
+  if (_userLatLng) {
+    const dist = haversine(_userLatLng.lat, _userLatLng.lng, data.lat, data.lng);
+    const walkMin = Math.max(1, Math.round(dist / 80));
+    const taxiMin = Math.max(1, Math.round(dist / 400));
+    popupAccess.innerHTML = `
+      <span class="access-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg> ${walkMin}分</span>
+      <span class="access-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg> ${taxiMin}分</span>
+    `;
+    popupAccess.classList.remove('hidden');
+  } else {
+    popupAccess.classList.add('hidden');
+  }
 
   // Photo gallery
   if (data.photos && data.photos.length > 0) {
