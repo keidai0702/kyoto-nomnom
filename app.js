@@ -1,4 +1,4 @@
-// === KyotoNomNom - Kyoto Trip Map App ===
+// === Kyotoもぐもぐ - Kyoto Trip Map App ===
 
 // === DATA ===
 const HOTELS = [
@@ -359,7 +359,7 @@ L.control.zoom({ position: 'topright' }).addTo(map);
 
 // Attribution
 L.control.attribution({ position: 'bottomright', prefix: false })
-  .addAttribution('Tiles &copy; Esri | KyotoNomNom')
+  .addAttribution('Tiles &copy; Esri | Kyotoもぐもぐ')
   .addTo(map);
 
 // === MARKER MANAGEMENT ===
