@@ -7,6 +7,7 @@
   --color-hotel: #F5A623;
   --color-restaurant: #FF6B6B;
   --color-cafe: #4ECDC4;
+  --color-spot: #60A5FA;
   --color-other: #A78BFA;
   --radius: 12px;
   --radius-sm: 8px;
@@ -136,6 +137,7 @@ body {
 
 .dot-restaurant { background: var(--color-restaurant); }
 .dot-cafe { background: var(--color-cafe); }
+.dot-spot { background: var(--color-spot); }
 .dot-other { background: var(--color-other); }
 
 /* Markers */
@@ -204,6 +206,7 @@ body {
 
 .marker--restaurant { background: var(--color-restaurant); }
 .marker--cafe { background: var(--color-cafe); }
+.marker--spot { background: var(--color-spot); }
 .marker--other { background: var(--color-other); }
 
 /* Popup Overlay */
@@ -253,8 +256,8 @@ body {
 
 #popup-close {
   position: absolute;
-  top: 10px;
-  right: 16px;
+  top: 8px;
+  right: 12px;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   color: var(--text-secondary);
@@ -270,7 +273,8 @@ body {
 }
 
 .popup-content {
-  padding: 20px 24px 8px;
+  padding: 24px 24px 8px;
+  padding-top: 28px;
 }
 
 #popup-name {
@@ -305,6 +309,11 @@ body {
 .category-badge.cafe {
   background: rgba(78, 205, 196, 0.2);
   color: var(--color-cafe);
+}
+
+.category-badge.spot {
+  background: rgba(96, 165, 250, 0.2);
+  color: var(--color-spot);
 }
 
 .category-badge.other {
@@ -536,12 +545,14 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 8px;
+  padding-right: 0;
 }
 
 .popup-header-row #popup-name {
   margin-bottom: 0;
+  flex: 1;
 }
 
 .fav-btn {
