@@ -563,6 +563,16 @@ function toggleFavorite(id) {
   return idx < 0; // returns true if now favorited
 }
 
+// === UTILITY ===
+function getCategoryColor(cat) {
+  switch(cat) {
+    case 'hotel': return 'var(--color-hotel)';
+    case 'restaurant': return 'var(--color-restaurant)';
+    case 'cafe': return 'var(--color-cafe)';
+    default: return 'var(--color-other)';
+  }
+}
+
 // === HASHIGO ALGORITHM ===
 // Haversine distance in meters
 function haversine(lat1, lng1, lat2, lng2) {
@@ -760,9 +770,15 @@ function showPopup(data) {
           </div>
         </div>
       `;
-      li.addEventListener('click', () => {
-        showPopup(rec.data);
-        map.flyTo([rec.data.lat, rec.data.lng], 17, { duration: 0.8 });
+      li.addEventListener('click', (e) => {
+        e.stopPropagation();
+        li.classList.add('tapped');
+        const target = rec.data;
+        setTimeout(() => {
+          hidePopup();
+          map.flyTo([target.lat, target.lng], 17, { duration: 0.8 });
+          setTimeout(() => showPopup(target), 600);
+        }, 200);
       });
       hashigoList.appendChild(li);
     });
@@ -785,11 +801,16 @@ function hidePopup() {
   currentPopupData = null;
 }
 
-// Favorite toggle
-popupFav.addEventListener('click', () => {
+// Favorite toggle with animation
+popupFav.addEventListener('click', (e) => {
+  e.stopPropagation();
   if (!currentPopupData) return;
   const nowFav = toggleFavorite(currentPopupData.id);
   popupFav.classList.toggle('active', nowFav);
+  // Pop animation
+  popupFav.classList.remove('pop');
+  void popupFav.offsetWidth; // force reflow
+  popupFav.classList.add('pop');
   // Re-apply filter if fav filter is active
   if (activeFilter === 'fav') applyFilter();
 });
@@ -797,15 +818,21 @@ popupFav.addEventListener('click', () => {
 popupClose.addEventListener('click', hidePopup);
 popupOverlay.addEventListener('click', hidePopup);
 
-// Swipe down to close
+// Swipe down to close (only from handle area, not content)
 let touchStartY = 0;
+let touchStartX = 0;
+const popupHandle = document.querySelector('.popup-handle');
+
 popupSheet.addEventListener('touchstart', (e) => {
   touchStartY = e.touches[0].clientY;
+  touchStartX = e.touches[0].clientX;
 });
 
 popupSheet.addEventListener('touchmove', (e) => {
-  const diff = e.touches[0].clientY - touchStartY;
-  if (diff > 80) {
+  const diffY = e.touches[0].clientY - touchStartY;
+  const diffX = Math.abs(e.touches[0].clientX - touchStartX);
+  // Only close on downward swipe (not sideways scroll), and only when scrolled to top
+  if (diffY > 80 && diffX < 40 && popupSheet.scrollTop <= 0) {
     hidePopup();
   }
 });
@@ -954,15 +981,6 @@ const searchIndex = allItems.map(item => ({
   data: item,
   text: buildSearchText(item)
 }));
-
-function getCategoryColor(cat) {
-  switch(cat) {
-    case 'hotel': return 'var(--color-hotel)';
-    case 'restaurant': return 'var(--color-restaurant)';
-    case 'cafe': return 'var(--color-cafe)';
-    default: return 'var(--color-other)';
-  }
-}
 
 function doSearch(query) {
   searchResults.innerHTML = '';
