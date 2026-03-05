@@ -611,6 +611,188 @@ dayBtns.forEach(btn => {
   });
 });
 
+// === SEARCH ===
+const searchToggle = document.getElementById('search-toggle');
+const searchPanel = document.getElementById('search-panel');
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
+const searchResults = document.getElementById('search-results');
+
+// Romaji / Katakana / Hiragana conversion tables
+const ROMAJI_TO_KANA = {
+  'a':'ア','i':'イ','u':'ウ','e':'エ','o':'オ',
+  'ka':'カ','ki':'キ','ku':'ク','ke':'ケ','ko':'コ',
+  'sa':'サ','si':'シ','shi':'シ','su':'ス','se':'セ','so':'ソ',
+  'ta':'タ','ti':'チ','chi':'チ','tsu':'ツ','tu':'ツ','te':'テ','to':'ト',
+  'na':'ナ','ni':'ニ','nu':'ヌ','ne':'ネ','no':'ノ',
+  'ha':'ハ','hi':'ヒ','fu':'フ','hu':'フ','he':'ヘ','ho':'ホ',
+  'ma':'マ','mi':'ミ','mu':'ム','me':'メ','mo':'モ',
+  'ya':'ヤ','yu':'ユ','yo':'ヨ',
+  'ra':'ラ','ri':'リ','ru':'ル','re':'レ','ro':'ロ',
+  'wa':'ワ','wi':'ヰ','we':'ヱ','wo':'ヲ','n':'ン',
+  'ga':'ガ','gi':'ギ','gu':'グ','ge':'ゲ','go':'ゴ',
+  'za':'ザ','zi':'ジ','ji':'ジ','zu':'ズ','ze':'ゼ','zo':'ゾ',
+  'da':'ダ','di':'ヂ','du':'ヅ','de':'デ','do':'ド',
+  'ba':'バ','bi':'ビ','bu':'ブ','be':'ベ','bo':'ボ',
+  'pa':'パ','pi':'ピ','pu':'プ','pe':'ペ','po':'ポ',
+  'kya':'キャ','kyu':'キュ','kyo':'キョ',
+  'sha':'シャ','shu':'シュ','sho':'ショ',
+  'cha':'チャ','chu':'チュ','cho':'チョ',
+  'nya':'ニャ','nyu':'ニュ','nyo':'ニョ',
+  'hya':'ヒャ','hyu':'ヒュ','hyo':'ヒョ',
+  'mya':'ミャ','myu':'ミュ','myo':'ミョ',
+  'rya':'リャ','ryu':'リュ','ryo':'リョ',
+  'gya':'ギャ','gyu':'ギュ','gyo':'ギョ',
+  'ja':'ジャ','ju':'ジュ','jo':'ジョ',
+  'bya':'ビャ','byu':'ビュ','byo':'ビョ',
+  'pya':'ピャ','pyu':'ピュ','pyo':'ピョ'
+};
+
+function katakanaToHiragana(str) {
+  return str.replace(/[\u30A1-\u30F6]/g, ch =>
+    String.fromCharCode(ch.charCodeAt(0) - 0x60)
+  );
+}
+
+function hiraganaToKatakana(str) {
+  return str.replace(/[\u3041-\u3096]/g, ch =>
+    String.fromCharCode(ch.charCodeAt(0) + 0x60)
+  );
+}
+
+function romajiToKatakana(str) {
+  let result = '';
+  let i = 0;
+  const s = str.toLowerCase();
+  while (i < s.length) {
+    // Double consonant (っ)
+    if (i + 1 < s.length && s[i] === s[i+1] && 'bcdfghjklmpqrstvwxyz'.includes(s[i])) {
+      result += 'ッ';
+      i++;
+      continue;
+    }
+    let matched = false;
+    for (let len = 3; len >= 1; len--) {
+      const chunk = s.substring(i, i + len);
+      if (ROMAJI_TO_KANA[chunk]) {
+        result += ROMAJI_TO_KANA[chunk];
+        i += len;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) {
+      result += s[i];
+      i++;
+    }
+  }
+  return result;
+}
+
+function buildSearchText(item) {
+  const parts = [
+    item.name,
+    item.nameJa || '',
+    item.category,
+    item.subcategory || '',
+    item.description || ''
+  ];
+  const text = parts.join(' ').toLowerCase();
+  const katakana = katakanaToHiragana(text);
+  return text + ' ' + katakana;
+}
+
+// Pre-build search index
+const allItems = [...HOTELS, ...STORES];
+const searchIndex = allItems.map(item => ({
+  data: item,
+  text: buildSearchText(item)
+}));
+
+function getCategoryColor(cat) {
+  switch(cat) {
+    case 'hotel': return 'var(--color-hotel)';
+    case 'restaurant': return 'var(--color-restaurant)';
+    case 'cafe': return 'var(--color-cafe)';
+    default: return 'var(--color-other)';
+  }
+}
+
+function doSearch(query) {
+  searchResults.innerHTML = '';
+  if (!query.trim()) return;
+
+  const q = query.trim().toLowerCase();
+  // Convert query to hiragana for matching
+  const qHira = katakanaToHiragana(q);
+  // Also try romaji -> katakana -> hiragana
+  const qFromRomaji = katakanaToHiragana(romajiToKatakana(q));
+
+  const results = searchIndex.filter(({ text }) => {
+    return text.includes(q) || text.includes(qHira) || text.includes(qFromRomaji);
+  });
+
+  results.forEach(({ data }) => {
+    const li = document.createElement('li');
+    li.className = 'search-result-item';
+    li.innerHTML = `
+      <span class="search-result-dot" style="background:${getCategoryColor(data.category)}"></span>
+      <div class="search-result-info">
+        <div class="search-result-name">${data.name}${data.nameJa ? ' (' + data.nameJa + ')' : ''}</div>
+        <div class="search-result-sub">${data.subcategory || data.category}</div>
+      </div>
+    `;
+    li.addEventListener('click', () => {
+      closeSearch();
+      map.flyTo([data.lat, data.lng], 17, { duration: 0.8 });
+      setTimeout(() => showPopup(data), 500);
+    });
+    searchResults.appendChild(li);
+  });
+}
+
+function openSearch() {
+  searchPanel.classList.add('active');
+  searchToggle.classList.add('active');
+  setTimeout(() => searchInput.focus(), 300);
+}
+
+function closeSearch() {
+  searchPanel.classList.remove('active');
+  searchToggle.classList.remove('active');
+  searchInput.value = '';
+  searchClear.classList.remove('visible');
+  searchResults.innerHTML = '';
+}
+
+searchToggle.addEventListener('click', () => {
+  if (searchPanel.classList.contains('active')) {
+    closeSearch();
+  } else {
+    openSearch();
+  }
+});
+
+searchInput.addEventListener('input', () => {
+  const val = searchInput.value;
+  searchClear.classList.toggle('visible', val.length > 0);
+  doSearch(val);
+});
+
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  searchClear.classList.remove('visible');
+  searchResults.innerHTML = '';
+  searchInput.focus();
+});
+
+// Close search on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && searchPanel.classList.contains('active')) {
+    closeSearch();
+  }
+});
+
 // === INIT ===
 addHotelMarkers();
 addStoreMarkers();
