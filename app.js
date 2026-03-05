@@ -303,11 +303,61 @@ const STORES = [
     instagram: 'https://www.instagram.com/moku.kyoto/'
   },
 
-  // --- OTHER ---
+  {
+    id: 'coquelicot',
+    name: 'Coquelicot Blanc',
+    category: 'cafe',
+    subcategory: 'Artisan Bakery',
+    description: '八坂の塔近くのアルチザンベーカリー。幾何学模様のパンとクロワッサン。Black Swan Coffee併設。2023年12月オープン。',
+    lat: 34.9986146,
+    lng: 135.7790095,
+    instagram: 'https://www.instagram.com/coquelicotblanc_jp/'
+  },
+  {
+    id: 'salon-de-muge',
+    name: 'Salon de Muge',
+    nameJa: '無碍山房',
+    category: 'cafe',
+    subcategory: 'Japanese Sweets',
+    description: '菊乃井プロデュースの和カフェ。季節のパフェ、時雨弁当、作りたてのわらび餅。緑に囲まれた上質空間。',
+    lat: 35.0017930,
+    lng: 135.7815521,
+    instagram: 'https://www.instagram.com/salon_de_muge/'
+  },
+  {
+    id: 'panel-cafe',
+    name: 'Panel Cafe',
+    category: 'cafe',
+    subcategory: 'Pancake Cafe',
+    description: '白川沿いテラス席のカフェ。スフレパンケーキ、クロッフル、ティラミスが人気。祇園四条駅徒歩2分。',
+    lat: 35.0051486,
+    lng: 135.7726433,
+    instagram: 'https://www.instagram.com/panelcafe_kyoto/'
+  },
+  {
+    id: 'leun-akagane',
+    name: 'LE UN AKAGANE RESORT',
+    category: 'restaurant',
+    subcategory: 'French',
+    description: '大正時代の銅王邸宅(1925年築)フレンチレストラン。五感で楽しむBeauty & Healthyフレンチ。東山の圧巻の雰囲気。',
+    lat: 34.9989229,
+    lng: 135.7785746,
+    instagram: 'https://www.instagram.com/leun_akagane/'
+  },
+  {
+    id: 'rigoletto',
+    name: 'RIGOLETTO SMOKE GRILL & BAR',
+    category: 'restaurant',
+    subcategory: 'Spanish-Italian',
+    description: '祇園・花見小路の元お茶屋リノベ。スモーク&グリル料理、タパス、ピッツァ。2Fオープンキッチン。',
+    lat: 35.0024367,
+    lng: 135.7761667,
+    instagram: 'https://www.instagram.com/rigoletto_kyoto/'
+  },
   {
     id: 'blue-bottle',
     name: 'Blue Bottle Studio Kyoto',
-    category: 'other',
+    category: 'cafe',
     subcategory: 'Coffee Studio',
     description: 'ブルーボトルコーヒー京都スタジオ。蹴上の築100年超の京町家。完全予約制コーヒーフルコース。',
     lat: 35.0113612,
