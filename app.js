@@ -691,23 +691,82 @@ function addStoreMarkers() {
   });
 }
 
-// === FAVORITES (localStorage) ===
-const FAV_KEY = 'pakuteku-kyoto-favs';
-function getFavorites() {
-  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
-  catch { return []; }
+// === FAVORITES (Firebase Realtime Database - shared) ===
+// Firebase config - set your database URL here
+const FIREBASE_DB_URL = 'https://pakuteku-kyoto-default-rtdb.asia-southeast1.firebasedatabase.app';
+const FAVS_PATH = '/favorites.json';
+
+// Local cache of shared favorites (synced with Firebase)
+let _favoritesCache = [];
+let _favoritesLoaded = false;
+
+// Load favorites from Firebase on startup
+async function loadFavorites() {
+  try {
+    const res = await fetch(FIREBASE_DB_URL + FAVS_PATH);
+    const data = await res.json();
+    _favoritesCache = Array.isArray(data) ? data : data ? Object.values(data) : [];
+    _favoritesLoaded = true;
+    // Refresh UI after loading
+    if (activeFilter === 'fav') applyFilter();
+    if (currentPopupData) {
+      const popupFav = document.getElementById('popup-fav');
+      popupFav.classList.toggle('active', isFavorite(currentPopupData.id));
+    }
+  } catch (e) {
+    console.warn('Firebase load failed, falling back to localStorage', e);
+    try { _favoritesCache = JSON.parse(localStorage.getItem('pakuteku-kyoto-favs')) || []; }
+    catch { _favoritesCache = []; }
+    _favoritesLoaded = true;
+  }
 }
-function saveFavorites(favs) {
-  localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+
+async function saveFavorites(favs) {
+  _favoritesCache = favs;
+  // Save to both Firebase and localStorage (localStorage as fallback)
+  localStorage.setItem('pakuteku-kyoto-favs', JSON.stringify(favs));
+  try {
+    await fetch(FIREBASE_DB_URL + FAVS_PATH, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(favs)
+    });
+  } catch (e) {
+    console.warn('Firebase save failed', e);
+  }
 }
-function isFavorite(id) { return getFavorites().includes(id); }
-function toggleFavorite(id) {
-  const favs = getFavorites();
+
+function getFavorites() { return _favoritesCache; }
+function isFavorite(id) { return _favoritesCache.includes(id); }
+
+async function toggleFavorite(id) {
+  const favs = [..._favoritesCache];
   const idx = favs.indexOf(id);
   if (idx >= 0) favs.splice(idx, 1); else favs.push(id);
-  saveFavorites(favs);
+  await saveFavorites(favs);
   return idx < 0; // returns true if now favorited
 }
+
+// Poll for updates every 10 seconds so both users see changes
+setInterval(async () => {
+  if (!_favoritesLoaded) return;
+  try {
+    const res = await fetch(FIREBASE_DB_URL + FAVS_PATH);
+    const data = await res.json();
+    const newFavs = Array.isArray(data) ? data : data ? Object.values(data) : [];
+    if (JSON.stringify(newFavs) !== JSON.stringify(_favoritesCache)) {
+      _favoritesCache = newFavs;
+      if (activeFilter === 'fav') applyFilter();
+      if (currentPopupData) {
+        const popupFav = document.getElementById('popup-fav');
+        popupFav.classList.toggle('active', isFavorite(currentPopupData.id));
+      }
+    }
+  } catch {}
+}, 10000);
+
+// Initial load
+loadFavorites();
 
 // === UTILITY ===
 function getCategoryColor(cat) {
@@ -952,10 +1011,10 @@ function hidePopup() {
 }
 
 // Favorite toggle with animation
-popupFav.addEventListener('click', (e) => {
+popupFav.addEventListener('click', async (e) => {
   e.stopPropagation();
   if (!currentPopupData) return;
-  const nowFav = toggleFavorite(currentPopupData.id);
+  const nowFav = await toggleFavorite(currentPopupData.id);
   popupFav.classList.toggle('active', nowFav);
   // Pop animation
   popupFav.classList.remove('pop');
