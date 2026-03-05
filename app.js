@@ -573,7 +573,7 @@ const STORES = [
     lng: 135.7292,
     instagram: 'https://www.instagram.com/explore/tags/金閣寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/960px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg'
+      'photos/kinkakuji.jpg'
     ]
   },
   {
@@ -587,7 +587,7 @@ const STORES = [
     lng: 135.7727,
     instagram: 'https://www.instagram.com/explore/tags/伏見稲荷大社/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg'
+      'photos/fushimi-inari.jpg'
     ]
   },
   {
@@ -601,7 +601,7 @@ const STORES = [
     lng: 135.7850,
     instagram: 'https://www.instagram.com/explore/tags/清水寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/960px-Kiyomizu.jpg'
+      'photos/kiyomizudera.jpg'
     ]
   },
   {
@@ -615,7 +615,7 @@ const STORES = [
     lng: 135.6713,
     instagram: 'https://www.instagram.com/explore/tags/嵐山竹林/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/d/de/Arashiyama_013.jpg'
+      'photos/arashiyama.jpg'
     ]
   },
   {
@@ -629,7 +629,7 @@ const STORES = [
     lng: 135.7756,
     instagram: 'https://www.instagram.com/explore/tags/祇園/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/960px-150124_Gion_Kyoto_Japan01s3.jpg'
+      'photos/gion.jpg'
     ]
   },
   {
@@ -643,7 +643,7 @@ const STORES = [
     lng: 135.7481,
     instagram: 'https://www.instagram.com/explore/tags/二条城/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/NinomaruPalace.jpg/960px-NinomaruPalace.jpg'
+      'photos/nijo-castle.jpg'
     ]
   },
   {
@@ -657,7 +657,7 @@ const STORES = [
     lng: 135.7942,
     instagram: 'https://www.instagram.com/explore/tags/哲学の道/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/960px-Japan_Kyoto_philosophers_walk_DSC00297.jpg'
+      'photos/philosopher-path.jpg'
     ]
   },
   {
@@ -671,8 +671,8 @@ const STORES = [
     lng: 135.7470,
     instagram: 'https://www.instagram.com/explore/tags/城南宮/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Jonangu_Kyoto29n4272.jpg/960px-Jonangu_Kyoto29n4272.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jonangu_shrine.jpg/960px-Jonangu_shrine.jpg'
+      'photos/jonangu1.jpg',
+      'photos/jonangu2.jpg'
     ]
   },
   {
@@ -686,7 +686,7 @@ const STORES = [
     lng: 135.7785,
     instagram: 'https://www.instagram.com/explore/tags/八坂神社/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Yasaka_jinja.jpg/960px-Yasaka_jinja.jpg'
+      'photos/yasaka.jpg'
     ]
   },
   {
@@ -700,7 +700,7 @@ const STORES = [
     lng: 135.7927,
     instagram: 'https://www.instagram.com/explore/tags/南禅寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/251213_Nanzen-ji_Kyoto_Japan01s3.jpg/960px-251213_Nanzen-ji_Kyoto_Japan01s3.jpg'
+      'photos/nanzenji.jpg'
     ]
   },
   {
@@ -714,7 +714,7 @@ const STORES = [
     lng: 135.7808,
     instagram: 'https://www.instagram.com/explore/tags/二寧坂/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg/960px-Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg'
+      'photos/higashiyama.jpg'
     ]
   },
   {
@@ -728,7 +728,7 @@ const STORES = [
     lng: 135.7643,
     instagram: 'https://www.instagram.com/explore/tags/錦市場/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/960px-Nishiki_Ichiba_by_matsuyuki.jpg'
+      'photos/nishiki.jpg'
     ]
   },
   {
@@ -742,7 +742,7 @@ const STORES = [
     lng: 135.7477,
     instagram: 'https://www.instagram.com/explore/tags/東寺/',
     photos: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Toji_2015.JPG/960px-Toji_2015.JPG'
+      'photos/toji.jpg'
     ]
   }
 ];
@@ -824,7 +824,10 @@ function updateUserLocation(lat, lng, accuracy) {
 
 const locateBtn = document.getElementById('locate-btn');
 locateBtn.addEventListener('click', () => {
-  if (!navigator.geolocation) return;
+  if (!navigator.geolocation) {
+    alert('この端末では位置情報を使用できません');
+    return;
+  }
   locateBtn.classList.add('active');
   navigator.geolocation.getCurrentPosition(
     (pos) => {
@@ -832,12 +835,15 @@ locateBtn.addEventListener('click', () => {
       map.flyTo([pos.coords.latitude, pos.coords.longitude], 16, { duration: 1 });
       locateBtn.classList.remove('active');
     },
-    () => { locateBtn.classList.remove('active'); },
-    { enableHighAccuracy: true, timeout: 10000 }
+    (err) => {
+      locateBtn.classList.remove('active');
+      if (err.code === 1) alert('位置情報の許可が必要です。設定から許可してください。');
+    },
+    { enableHighAccuracy: true, timeout: 15000 }
   );
 });
 
-// Background GPS tracking
+// Start background GPS tracking on page load
 if (navigator.geolocation) {
   navigator.geolocation.watchPosition(
     (pos) => updateUserLocation(pos.coords.latitude, pos.coords.longitude, pos.coords.accuracy),
@@ -909,12 +915,34 @@ const FAVS_PATH = '/favorites.json';
 let _favoritesCache = [];
 let _favoritesLoaded = false;
 
-// Load favorites from Firebase on startup
+// Load favorites from Firebase on startup, migrate localStorage if needed
 async function loadFavorites() {
+  // First grab any existing localStorage favorites
+  let localFavs = [];
+  try { localFavs = JSON.parse(localStorage.getItem('pakuteku-kyoto-favs')) || []; }
+  catch { localFavs = []; }
+
   try {
     const res = await fetch(FIREBASE_DB_URL + FAVS_PATH);
     const data = await res.json();
-    _favoritesCache = Array.isArray(data) ? data : data ? Object.values(data) : [];
+    const remoteFavs = Array.isArray(data) ? data : data ? Object.values(data) : [];
+
+    // Merge: if localStorage has favs that Firebase doesn't, push them up
+    if (localFavs.length > 0 && remoteFavs.length === 0) {
+      _favoritesCache = localFavs;
+      await saveFavorites(localFavs);
+    } else if (localFavs.length > 0) {
+      // Merge both sets (union)
+      const merged = [...new Set([...remoteFavs, ...localFavs])];
+      if (merged.length > remoteFavs.length) {
+        _favoritesCache = merged;
+        await saveFavorites(merged);
+      } else {
+        _favoritesCache = remoteFavs;
+      }
+    } else {
+      _favoritesCache = remoteFavs;
+    }
     _favoritesLoaded = true;
     // Refresh UI after loading
     if (activeFilter === 'fav') applyFilter();
@@ -924,8 +952,7 @@ async function loadFavorites() {
     }
   } catch (e) {
     console.warn('Firebase load failed, falling back to localStorage', e);
-    try { _favoritesCache = JSON.parse(localStorage.getItem('pakuteku-kyoto-favs')) || []; }
-    catch { _favoritesCache = []; }
+    _favoritesCache = localFavs;
     _favoritesLoaded = true;
   }
 }
