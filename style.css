@@ -360,6 +360,31 @@ body {
   display: none;
 }
 
+/* Photo gallery */
+.popup-photos {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0 8px;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  scrollbar-width: none;
+}
+.popup-photos::-webkit-scrollbar { display: none; }
+.popup-photos.hidden { display: none; }
+.popup-photos img {
+  flex-shrink: 0;
+  width: 200px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  scroll-snap-align: start;
+  background: var(--bg-secondary);
+}
+
 /* Leaflet overrides */
 .leaflet-control-zoom {
   border: none !important;

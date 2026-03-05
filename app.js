@@ -454,7 +454,10 @@ const STORES = [
     description: '正式名称は鹿苑寺。金箔で覆われた舎利殿が鏡湖池に映る姿は京都のシンボル。世界遺産。拝観料500円。',
     lat: 35.0394,
     lng: 135.7292,
-    instagram: 'https://www.instagram.com/explore/tags/金閣寺/'
+    instagram: 'https://www.instagram.com/explore/tags/金閣寺/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg/640px-Golden_Pavilion_Kinkaku-ji_water_mirror_2024.jpg'
+    ]
   },
   {
     id: 'fushimi-inari',
@@ -465,7 +468,10 @@ const STORES = [
     description: '千本鳥居で有名な稲荷神社の総本社。山頂まで約2時間のハイキングコース。拝観無料・24時間開放。',
     lat: 34.9671,
     lng: 135.7727,
-    instagram: 'https://www.instagram.com/explore/tags/伏見稲荷大社/'
+    instagram: 'https://www.instagram.com/explore/tags/伏見稲荷大社/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/640px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg'
+    ]
   },
   {
     id: 'kiyomizudera',
@@ -476,7 +482,10 @@ const STORES = [
     description: '「清水の舞台」で有名な世界遺産。崖の上に張り出した本堂からの眺望は圧巻。早朝拝観がおすすめ。拝観料400円。',
     lat: 34.9949,
     lng: 135.7850,
-    instagram: 'https://www.instagram.com/explore/tags/清水寺/'
+    instagram: 'https://www.instagram.com/explore/tags/清水寺/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kiyomizu.jpg/640px-Kiyomizu.jpg'
+    ]
   },
   {
     id: 'arashiyama',
@@ -487,7 +496,10 @@ const STORES = [
     description: '天に向かって伸びる竹林のトンネル。風で竹が揺れる音は「日本の音風景100選」。早朝が人が少なくおすすめ。',
     lat: 35.0170,
     lng: 135.6713,
-    instagram: 'https://www.instagram.com/explore/tags/嵐山竹林/'
+    instagram: 'https://www.instagram.com/explore/tags/嵐山竹林/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Arashiyama_013.jpg/640px-Arashiyama_013.jpg'
+    ]
   },
   {
     id: 'gion',
@@ -498,7 +510,10 @@ const STORES = [
     description: '京都を代表する花街。花見小路通りの石畳、町家、お茶屋の風景。夕方以降に舞妓さんに出会えることも。',
     lat: 35.0037,
     lng: 135.7756,
-    instagram: 'https://www.instagram.com/explore/tags/祇園/'
+    instagram: 'https://www.instagram.com/explore/tags/祇園/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/150124_Gion_Kyoto_Japan01s3.jpg/640px-150124_Gion_Kyoto_Japan01s3.jpg'
+    ]
   },
   {
     id: 'nijo-castle',
@@ -509,7 +524,10 @@ const STORES = [
     description: '徳川家康が築城。鶯張りの廊下と二の丸御殿の障壁画が見事。世界遺産。入城料800円。',
     lat: 35.0142,
     lng: 135.7481,
-    instagram: 'https://www.instagram.com/explore/tags/二条城/'
+    instagram: 'https://www.instagram.com/explore/tags/二条城/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/NinomaruPalace.jpg/640px-NinomaruPalace.jpg'
+    ]
   },
   {
     id: 'philosopher-path',
@@ -520,7 +538,10 @@ const STORES = [
     description: '銀閣寺から南禅寺へ続く約2kmの疏水沿いの散歩道。桜と紅葉の名所。途中にカフェや小さなお寺も点在。',
     lat: 35.0215,
     lng: 135.7942,
-    instagram: 'https://www.instagram.com/explore/tags/哲学の道/'
+    instagram: 'https://www.instagram.com/explore/tags/哲学の道/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Japan_Kyoto_philosophers_walk_DSC00297.jpg/640px-Japan_Kyoto_philosophers_walk_DSC00297.jpg'
+    ]
   },
   {
     id: 'jonangu',
@@ -531,7 +552,11 @@ const STORES = [
     description: '方除けの大社。しだれ梅と椿が有名な神苑「楽水苑」は圧巻。春の梅まつりは必見。拝観料800円。',
     lat: 34.9509,
     lng: 135.7470,
-    instagram: 'https://www.instagram.com/explore/tags/城南宮/'
+    instagram: 'https://www.instagram.com/explore/tags/城南宮/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Jonangu_Kyoto29n4272.jpg/640px-Jonangu_Kyoto29n4272.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Jonangu_shrine.jpg/640px-Jonangu_shrine.jpg'
+    ]
   },
   {
     id: 'yasaka',
@@ -542,7 +567,10 @@ const STORES = [
     description: '祇園祭の本拠地。朱塗りの西楼門は祇園のランドマーク。縁結びのパワースポット。24時間参拝可。',
     lat: 35.0036,
     lng: 135.7785,
-    instagram: 'https://www.instagram.com/explore/tags/八坂神社/'
+    instagram: 'https://www.instagram.com/explore/tags/八坂神社/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Yasaka_jinja.jpg/640px-Yasaka_jinja.jpg'
+    ]
   },
   {
     id: 'nanzenji',
@@ -553,7 +581,10 @@ const STORES = [
     description: '日本最高位の禅寺。三門からの絶景、赤レンガの水路閣がフォトスポット。方丈庭園も見事。境内無料。',
     lat: 35.0112,
     lng: 135.7927,
-    instagram: 'https://www.instagram.com/explore/tags/南禅寺/'
+    instagram: 'https://www.instagram.com/explore/tags/南禅寺/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/251213_Nanzen-ji_Kyoto_Japan01s3.jpg/640px-251213_Nanzen-ji_Kyoto_Japan01s3.jpg'
+    ]
   },
   {
     id: 'higashiyama',
@@ -564,7 +595,10 @@ const STORES = [
     description: '清水寺への参道。石畳の坂道に町家の土産物店やカフェが並ぶ。転ぶと不運が続くという言い伝えも。',
     lat: 34.9983,
     lng: 135.7808,
-    instagram: 'https://www.instagram.com/explore/tags/二寧坂/'
+    instagram: 'https://www.instagram.com/explore/tags/二寧坂/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg/640px-Pedestrian_road_with_pavements_and_paper_umbrellas%2C_Higashiyama-ku%2C_Kyoto%2C_Japan%2C_early_morning.jpg'
+    ]
   },
   {
     id: 'nishiki',
@@ -575,7 +609,10 @@ const STORES = [
     description: '「京の台所」と呼ばれる約400mのアーケード商店街。130以上の店舗で漬物、抹茶スイーツ、食べ歩きを楽しめる。',
     lat: 35.0050,
     lng: 135.7643,
-    instagram: 'https://www.instagram.com/explore/tags/錦市場/'
+    instagram: 'https://www.instagram.com/explore/tags/錦市場/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Nishiki_Ichiba_by_matsuyuki.jpg/640px-Nishiki_Ichiba_by_matsuyuki.jpg'
+    ]
   },
   {
     id: 'toji',
@@ -586,7 +623,10 @@ const STORES = [
     description: '日本一高い木造の五重塔（55m）がシンボル。世界遺産。毎月21日は「弘法市」の骨董市が開催。京都駅から徒歩15分。',
     lat: 34.9804,
     lng: 135.7477,
-    instagram: 'https://www.instagram.com/explore/tags/東寺/'
+    instagram: 'https://www.instagram.com/explore/tags/東寺/',
+    photos: [
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Toji_2015.JPG/640px-Toji_2015.JPG'
+    ]
   }
 ];
 
@@ -926,6 +966,7 @@ const popupDescription = document.getElementById('popup-description');
 const popupInstagram = document.getElementById('popup-instagram');
 const popupClose = document.getElementById('popup-close');
 const popupFav = document.getElementById('popup-fav');
+const popupPhotos = document.getElementById('popup-photos');
 const hashigoSection = document.getElementById('hashigo-section');
 const hashigoList = document.getElementById('hashigo-list');
 
@@ -941,6 +982,18 @@ function showPopup(data) {
 
   popupSubcategory.textContent = data.subcategory || (data.day ? `Day ${data.day}` : '');
   popupDescription.textContent = data.description || '';
+
+  // Photo gallery
+  if (data.photos && data.photos.length > 0) {
+    popupPhotos.innerHTML = data.photos.map(url =>
+      `<img src="${url}" alt="${data.name}" loading="lazy">`
+    ).join('');
+    popupPhotos.scrollLeft = 0;
+    popupPhotos.classList.remove('hidden');
+  } else {
+    popupPhotos.innerHTML = '';
+    popupPhotos.classList.add('hidden');
+  }
 
   if (data.instagram) {
     popupInstagram.href = data.instagram;
