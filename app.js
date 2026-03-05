@@ -363,6 +363,52 @@ const STORES = [
     lat: 35.0113612,
     lng: 135.7894734,
     instagram: 'https://www.instagram.com/p/DOqfayNkkaA/?img_index=1'
+  },
+
+  // --- WINE BARS ---
+  {
+    id: 'estre',
+    name: 'wine&beer ESTRE',
+    nameJa: 'ワイン&ビア エストレ',
+    category: 'restaurant',
+    subcategory: 'Wine & Beer Bar',
+    description: '東山三条のナチュラルワイン&クラフトビールバル。夫婦経営。自家製パスタとアペタイザーが人気。',
+    lat: 35.00906257,
+    lng: 135.77824401,
+    instagram: 'https://www.instagram.com/wine_beer_estre/'
+  },
+  {
+    id: 'espace',
+    name: 'Bistro & Wine espace',
+    nameJa: 'ビストロ&ワイン エスパス',
+    category: 'restaurant',
+    subcategory: 'Bistro / Wine Bar',
+    description: '三条京阪のビストロ&ワインバー。自家製ビストロ料理とオーガニック・ナチュラルワイン。三条駅徒歩3分。',
+    lat: 35.00911934,
+    lng: 135.77532398,
+    instagram: 'https://www.instagram.com/espace.kh/'
+  },
+  {
+    id: 'kuma-wine',
+    name: 'Kuma no Wine House',
+    nameJa: 'くまのワインハウス',
+    category: 'restaurant',
+    subcategory: 'Natural Wine Bar',
+    description: '神宮丸太町のナチュラルワインバー。ボトル4,000〜5,000円台。ビストロメニューも充実。',
+    lat: 35.01760335,
+    lng: 135.77683313,
+    instagram: 'https://www.instagram.com/kwh_info/'
+  },
+  {
+    id: 'harmonika',
+    name: 'Harmonika',
+    nameJa: 'ハーモニカ',
+    category: 'cafe',
+    subcategory: 'Dessert Specialty',
+    description: '元フレンチシェフによるデセール専門店。清水五条エリア。カウンター8席。Instagram DMで予約推奨。',
+    lat: 34.99821504,
+    lng: 135.77217377,
+    instagram: 'https://www.instagram.com/harmonika_kyoto/'
   }
 ];
 
