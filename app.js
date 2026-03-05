@@ -1,4 +1,4 @@
-// === Kyotoてくてく - Kyoto Trip Map App ===
+// === ぱくてく京都 - Kyoto Trip Map App ===
 
 // === DATA ===
 const HOTELS = [
@@ -634,7 +634,7 @@ L.control.zoom({ position: 'topright' }).addTo(map);
 
 // Attribution
 L.control.attribution({ position: 'bottomright', prefix: false })
-  .addAttribution('Tiles &copy; Esri | Kyotoてくてく')
+  .addAttribution('Tiles &copy; Esri | ぱくてく京都')
   .addTo(map);
 
 // === MARKER MANAGEMENT ===
@@ -692,7 +692,7 @@ function addStoreMarkers() {
 }
 
 // === FAVORITES (localStorage) ===
-const FAV_KEY = 'kyoto-tekuteku-favs';
+const FAV_KEY = 'pakuteku-kyoto-favs';
 function getFavorites() {
   try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
   catch { return []; }
@@ -1001,18 +1001,27 @@ filterBtns.forEach(btn => {
 });
 
 function applyFilter() {
+  const visibleLatLngs = [];
   allMarkers.forEach(({ marker, data, type }) => {
-    if (type === 'hotel') return; // Hotels always visible
+    if (type === 'hotel') {
+      visibleLatLngs.push([data.lat, data.lng]);
+      return;
+    }
     let show;
     if (activeFilter === 'all') show = true;
     else if (activeFilter === 'fav') show = isFavorite(data.id);
     else show = data.category === activeFilter;
     if (show) {
       if (!map.hasLayer(marker)) marker.addTo(map);
+      visibleLatLngs.push([data.lat, data.lng]);
     } else {
       if (map.hasLayer(marker)) map.removeLayer(marker);
     }
   });
+  // Fit map to visible markers when filtering specific category
+  if (activeFilter !== 'all' && visibleLatLngs.length > 1) {
+    map.fitBounds(L.latLngBounds(visibleLatLngs), { padding: [60, 60], maxZoom: 16, animate: true });
+  }
 }
 
 // === DAY NAVIGATION ===
