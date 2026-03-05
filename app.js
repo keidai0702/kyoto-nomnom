@@ -409,6 +409,39 @@ const STORES = [
     lat: 34.99821504,
     lng: 135.77217377,
     instagram: 'https://www.instagram.com/harmonika_kyoto/'
+  },
+  {
+    id: 'komorebino',
+    name: 'komorebino',
+    nameJa: 'コモレビーノ',
+    category: 'restaurant',
+    subcategory: 'Natural Wine Bar',
+    description: '祇園の隠れ家ナチュラルワインバー。世界中から厳選した約1,000本。二十四節気に合わせワインリスト更新。グラス1,000円〜。',
+    lat: 35.00433506,
+    lng: 135.77498202,
+    instagram: 'https://www.instagram.com/komorebino/'
+  },
+  {
+    id: 'soma',
+    name: 'SOMA',
+    nameJa: 'ソーマ',
+    category: 'restaurant',
+    subcategory: 'Italian / Wine',
+    description: '鴨川沿いのカジュアルイタリアン。和牛、京丹波ポーク、契約農家の野菜。ナチュラルワイン&クラフトビール。川床あり。',
+    lat: 34.99954784,
+    lng: 135.76901184,
+    instagram: 'https://www.instagram.com/soma.kyoto/'
+  },
+  {
+    id: 'plein',
+    name: 'WINE BISTRO by plein',
+    nameJa: 'ワインビストロ バイ プラン 京都祇園',
+    category: 'restaurant',
+    subcategory: 'French Bistro / Wine',
+    description: '銀座PLEINグループ関西初出店。花見小路沿い。1,000本超のワインセラー、関西最大級カウンター。炭火フレンチ。2024年3月開店。',
+    lat: 35.00488812,
+    lng: 135.77527401,
+    instagram: 'https://www.instagram.com/bistroplein.kyotogion/'
   }
 ];
 
@@ -512,6 +545,161 @@ function addStoreMarkers() {
   });
 }
 
+// === FAVORITES (localStorage) ===
+const FAV_KEY = 'kyoto-mogumogu-favs';
+function getFavorites() {
+  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
+  catch { return []; }
+}
+function saveFavorites(favs) {
+  localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+}
+function isFavorite(id) { return getFavorites().includes(id); }
+function toggleFavorite(id) {
+  const favs = getFavorites();
+  const idx = favs.indexOf(id);
+  if (idx >= 0) favs.splice(idx, 1); else favs.push(id);
+  saveFavorites(favs);
+  return idx < 0; // returns true if now favorited
+}
+
+// === HASHIGO ALGORITHM ===
+// Haversine distance in meters
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+// Walking time in minutes (~80m/min)
+function walkMinutes(meters) { return Math.round(meters / 80); }
+
+// Subcategory "heaviness" for meal progression (5=heavy meal, 1=light/dessert)
+function getHeaviness(item) {
+  const sub = (item.subcategory || '').toLowerCase();
+  if (/dessert|sweets|pancake|patisserie|bakery|coffee/i.test(sub)) return 1;
+  if (/tea|teahouse/i.test(sub)) return 1.5;
+  if (/cocktail|bar(?!\s*\w)|speakeasy/i.test(sub)) return 2;
+  if (/cafe|izakaya/i.test(sub)) return 2.5;
+  if (/wine|beer|natural wine/i.test(sub)) return 3;
+  if (/italian|spanish|tapas/i.test(sub)) return 3.5;
+  if (/bistro|french|grill/i.test(sub)) return 4;
+  if (/fine dining|innovative|yakiniku/i.test(sub)) return 5;
+  if (item.category === 'cafe') return 2;
+  if (item.category === 'restaurant') return 3.5;
+  return 3;
+}
+
+// "Vibe" tags for compatibility matching
+function getVibeTags(item) {
+  const sub = (item.subcategory || '').toLowerCase();
+  const desc = (item.description || '').toLowerCase();
+  const tags = new Set();
+  if (/wine|ワイン|ナチュラル/i.test(sub + desc)) tags.add('wine');
+  if (/beer|ビール|クラフト/i.test(sub + desc)) tags.add('beer');
+  if (/cocktail|カクテル/i.test(sub + desc)) tags.add('cocktail');
+  if (/french|フレンチ|bistro|ビストロ/i.test(sub + desc)) tags.add('french');
+  if (/italian|イタリアン|パスタ|ピッツァ/i.test(sub + desc)) tags.add('italian');
+  if (/japanese|和|茶|抹茶|わらび/i.test(sub + desc)) tags.add('japanese');
+  if (/町家|築|リノベ|レトロ/i.test(desc)) tags.add('heritage');
+  if (/鴨川|川床|テラス|ビュー/i.test(desc)) tags.add('scenic');
+  if (/隠れ家|カウンター|席/i.test(desc)) tags.add('intimate');
+  if (/dessert|デザート|デセール|パフェ|スイーツ/i.test(sub + desc)) tags.add('dessert');
+  if (/coffee|コーヒー/i.test(sub + desc)) tags.add('coffee');
+  return tags;
+}
+
+function vibeOverlap(tagsA, tagsB) {
+  let overlap = 0;
+  tagsA.forEach(t => { if (tagsB.has(t)) overlap++; });
+  return overlap;
+}
+
+function computeHashigoScore(current, candidate) {
+  if (candidate.id === current.id) return -Infinity;
+  if (candidate.category === 'hotel') return -Infinity;
+
+  const dist = haversine(current.lat, current.lng, candidate.lat, candidate.lng);
+  const walk = walkMinutes(dist);
+
+  // 1. Distance score (0-35): walkable is king
+  let distScore;
+  if (dist < 200) distScore = 35;
+  else if (dist < 400) distScore = 32;
+  else if (dist < 600) distScore = 28;
+  else if (dist < 900) distScore = 22;
+  else if (dist < 1300) distScore = 15;
+  else if (dist < 2000) distScore = 8;
+  else distScore = 2;
+
+  // 2. Meal progression score (0-25): prefer lighter after heavier
+  const hCurrent = getHeaviness(current);
+  const hCandidate = getHeaviness(candidate);
+  let progressionScore;
+  const diff = hCurrent - hCandidate;
+  if (diff >= 1.5) progressionScore = 25;       // going nicely lighter
+  else if (diff >= 0.5) progressionScore = 22;   // slightly lighter
+  else if (Math.abs(diff) < 0.5) progressionScore = 18; // same level OK
+  else if (diff >= -1) progressionScore = 12;    // slightly heavier, OK
+  else progressionScore = 5;                     // much heavier = unusual
+
+  // 3. Category diversity (0-20): different is better
+  let diversityScore;
+  const sameCat = current.category === candidate.category;
+  const sameSub = (current.subcategory || '') === (candidate.subcategory || '');
+  if (!sameCat) diversityScore = 20;
+  else if (!sameSub) diversityScore = 12;
+  else diversityScore = 4;
+
+  // 4. Vibe compatibility (0-15): related vibes = good pairing
+  const vibesA = getVibeTags(current);
+  const vibesB = getVibeTags(candidate);
+  const overlap = vibeOverlap(vibesA, vibesB);
+  const totalUnique = new Set([...vibesA, ...vibesB]).size;
+  // Some overlap is good (compatible), but not 100% (too similar)
+  let vibeScore;
+  if (totalUnique === 0) vibeScore = 8;
+  else {
+    const ratio = overlap / totalUnique;
+    if (ratio > 0.7) vibeScore = 8;       // too similar
+    else if (ratio > 0.3) vibeScore = 15;  // nicely related
+    else if (ratio > 0) vibeScore = 12;    // some connection
+    else vibeScore = 6;                    // totally different
+  }
+
+  // 5. Favorite bonus (0-5)
+  const favBonus = isFavorite(candidate.id) ? 5 : 0;
+
+  const total = distScore + progressionScore + diversityScore + vibeScore + favBonus;
+  return total;
+}
+
+function getHashigoRecommendations(current, count = 3) {
+  const scored = STORES.map(s => ({
+    data: s,
+    score: computeHashigoScore(current, s),
+    dist: haversine(current.lat, current.lng, s.lat, s.lng)
+  }))
+  .filter(s => s.score > 0)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, count);
+  return scored;
+}
+
+function getHashigoTag(current, candidate) {
+  const hC = getHeaviness(current);
+  const hN = getHeaviness(candidate);
+  const diff = hC - hN;
+  if (diff >= 1.5) return 'ライトに';
+  if (diff >= 0.5) return '少し軽めに';
+  if (Math.abs(diff) < 0.5) return '同じ雰囲気';
+  if (diff >= -1) return 'しっかり';
+  return 'ガッツリ';
+}
+
 // === POPUP / BOTTOM SHEET ===
 const popupSheet = document.getElementById('popup-sheet');
 const popupOverlay = document.getElementById('popup-overlay');
@@ -521,8 +709,14 @@ const popupSubcategory = document.getElementById('popup-subcategory');
 const popupDescription = document.getElementById('popup-description');
 const popupInstagram = document.getElementById('popup-instagram');
 const popupClose = document.getElementById('popup-close');
+const popupFav = document.getElementById('popup-fav');
+const hashigoSection = document.getElementById('hashigo-section');
+const hashigoList = document.getElementById('hashigo-list');
+
+let currentPopupData = null;
 
 function showPopup(data) {
+  currentPopupData = data;
   popupName.textContent = data.nameJa ? `${data.name} (${data.nameJa})` : data.name;
 
   const cat = data.category;
@@ -539,6 +733,44 @@ function showPopup(data) {
     popupInstagram.classList.add('hidden');
   }
 
+  // Favorite button
+  popupFav.classList.toggle('active', isFavorite(data.id));
+
+  // Hashigo recommendations (only for stores, not hotels)
+  if (data.category !== 'hotel') {
+    const recs = getHashigoRecommendations(data);
+    hashigoList.innerHTML = '';
+    recs.forEach((rec, i) => {
+      const walk = walkMinutes(rec.dist);
+      const tag = getHashigoTag(data, rec.data);
+      const li = document.createElement('li');
+      li.className = 'hashigo-item';
+      li.innerHTML = `
+        <span class="hashigo-rank">${i + 1}</span>
+        <span class="hashigo-dot" style="background:${getCategoryColor(rec.data.category)}"></span>
+        <div class="hashigo-info">
+          <div class="hashigo-name">${rec.data.name}</div>
+          <div class="hashigo-meta">
+            <span class="hashigo-walk">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></svg>
+              ${walk}分
+            </span>
+            <span>${rec.data.subcategory || rec.data.category}</span>
+            <span class="hashigo-tag">${tag}</span>
+          </div>
+        </div>
+      `;
+      li.addEventListener('click', () => {
+        showPopup(rec.data);
+        map.flyTo([rec.data.lat, rec.data.lng], 17, { duration: 0.8 });
+      });
+      hashigoList.appendChild(li);
+    });
+    hashigoSection.classList.remove('hidden');
+  } else {
+    hashigoSection.classList.add('hidden');
+  }
+
   popupSheet.classList.add('active');
   popupOverlay.classList.add('active');
 
@@ -550,7 +782,17 @@ function showPopup(data) {
 function hidePopup() {
   popupSheet.classList.remove('active');
   popupOverlay.classList.remove('active');
+  currentPopupData = null;
 }
+
+// Favorite toggle
+popupFav.addEventListener('click', () => {
+  if (!currentPopupData) return;
+  const nowFav = toggleFavorite(currentPopupData.id);
+  popupFav.classList.toggle('active', nowFav);
+  // Re-apply filter if fav filter is active
+  if (activeFilter === 'fav') applyFilter();
+});
 
 popupClose.addEventListener('click', hidePopup);
 popupOverlay.addEventListener('click', hidePopup);
@@ -587,7 +829,11 @@ filterBtns.forEach(btn => {
 function applyFilter() {
   allMarkers.forEach(({ marker, data, type }) => {
     if (type === 'hotel') return; // Hotels always visible
-    if (activeFilter === 'all' || data.category === activeFilter) {
+    let show;
+    if (activeFilter === 'all') show = true;
+    else if (activeFilter === 'fav') show = isFavorite(data.id);
+    else show = data.category === activeFilter;
+    if (show) {
       if (!map.hasLayer(marker)) marker.addTo(map);
     } else {
       if (map.hasLayer(marker)) map.removeLayer(marker);
